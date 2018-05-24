@@ -1,0 +1,40 @@
+package controller;
+
+import java.net.URLEncoder;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/url")
+public class URLController {
+
+//	@RequestMapping("/url/f1")
+	@RequestMapping("/f1")
+	public void f1(){
+		System.out.println("URLController.f1()");
+	}
+	
+	@RequestMapping("/f2/*")
+	public void f2(){
+		System.out.println("URLController.f2()");
+	}
+	
+	@RequestMapping("/f3/**")
+	public void f3(){
+		System.out.println("URLController.f3()");
+	}
+	
+	@RequestMapping("/f4/?")
+	public void f4(){
+		System.out.println("URLController.f4()");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}

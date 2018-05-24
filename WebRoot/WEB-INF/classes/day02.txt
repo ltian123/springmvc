@@ -1,0 +1,126 @@
+参数
+	HttpServletRequest/HttpServletResponse
+
+	InputStream/OutputStream
+
+	Reader/Writer
+
+	WebRequest/NativeWebRequest
+
+	HttpSession
+
+	Model/Map/ModelMap
+
+	RedirectAttributes
+
+	请求参数
+
+	REST风格参数
+
+	Cookie值
+
+	请求头
+
+	请求体
+
+	简单值装配
+
+	Command参数
+
+	BindingResult/Errors
+
+
+
+
+
+
+
+package org.springframework.validation.support;
+public class BindingAwareModelMap implements Map {
+
+	private HttpServletRequest request;
+
+	public void put(String key,Object value){
+		request.setAttribute(key,value);
+	}
+
+	public Object get(String key){
+		return request.getAttribute(key);
+	}
+}
+
+
+访问作用域
+	HttpServletRequest		request session application
+		
+	WebRequest			request session
+
+	Map/ModelMap/Model		request	session
+
+	ModelAndView			request	session
+
+	Command对象			request	session
+	
+	@ModelAttribute			request session
+
+	HttpSession			session	application
+
+	@SessionAttributes		session
+
+	SessionStatus			session
+
+SpringMVC表单标签
+	form
+
+	input
+
+	password
+
+	hidden
+
+	textarea
+
+	checkbox
+
+	checkboxes
+
+	radiobutton
+
+	radiobuttons
+
+	select
+
+	option
+
+	options
+
+	button
+
+	errors
+
+
+
+
+
+复选框没有选择问题
+
+	?username=abc
+	&password=123
+	&c=1
+	&c=2
+
+
+	?username=
+	&password=
+
+
+
+	?c=1
+	&c=3
+	&_c=on
+	&_c=on
+	&_c=on
+
+	?_c=on
+	&_c=on
+	&_c=on

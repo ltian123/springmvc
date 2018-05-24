@@ -1,0 +1,38 @@
+package controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import command.BinderCommand;
+import entity.Point;
+
+@Controller
+@RequestMapping("/binder")
+public class BinderController {
+
+	@RequestMapping("/show")
+	public String show(BinderCommand binderCommand){
+		binderCommand.setUsername("abc");
+		
+		Point point=new Point();
+		point.setX(4.0);
+		point.setY(2.0);
+		binderCommand.setPoint(point);
+		
+		return "binder";
+	}
+	
+	@RequestMapping("/submit")
+	public String submit(BinderCommand binderCommand){
+		System.out.println(binderCommand.getUsername());
+		
+		Point point=binderCommand.getPoint();
+		if(point!=null){
+			System.out.println(point.getX()+" "+point.getY());
+		}
+		return "redirect:/binder/show";
+	}
+	
+	
+	
+}

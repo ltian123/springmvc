@@ -1,0 +1,181 @@
+SpringMVC
+	表示层MVC框架
+
+	特点
+		非常简单web层开发
+		提供了大量的注解替代xml配置
+		天生与Spring框架集成
+		提供了大量的扩展点
+
+SpringMVC结构
+	用户发送请求给DispatcherServlet
+
+	DispatcherServlet负责解析请求给SpringMVC处理流程
+
+	HandlerMapping负责将请求映射到处理器
+
+	HandlerAdapter负责适配不同类型的处理器
+
+	Handler负责处理业务逻辑并产生数据模型和视图
+
+	ModelAndView负责处理数据模型和视图
+
+	ViewResolver负责将试图名解析为具体的视图技术
+
+	View负责处理视图技术
+
+	生成响应给客户端
+
+
+SpringMVC配置文件
+	默认
+		/WEB-INF/Servlet名-servlet.xml
+
+	自定义
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>配置文件位置</param-value>
+		</init-param>
+
+访问JSP
+	<mvc:view-controller path="" view-name=""/>
+
+
+Handler中方法的返回类型
+	ModelAndView       
+		模型和视图
+
+	String
+		视图名
+			直接写字符串		表示视图名
+			forward:路径		表示转发
+			redirect:路径		表示重定向
+
+	Object
+		模型
+
+	void
+		没有参数做响应处理
+		默认使用请求路径作为viewName
+		参数有响应处理的对象
+		在方法中自定义响应信息
+
+POST请求字符编码过滤器
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>字符编码</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+静态资源访问
+	交给一个服务器中默认的Servlet来处理静态资源，只能访问webroot下的静态资源
+		<mvc:default-servlet-handler/>
+
+	SpringMVC自己处理，可以访问WEB-INF下的静态资源
+		<mvc:resources location="" mapping=""></mvc:resources>
+
+注解
+	<mvc:annotation-driven/>
+
+	Spring2.5
+		@Controller
+			用于表示处理器类
+
+		@RequestMapping
+			请求到处理器方法的映射规则
+
+		@RequestParam
+			请求参数到处理器功能处理方法的参数上的绑定
+
+		@ModelAttribute
+			请求参数到命令对象的绑定
+
+		@SessionAttributes
+			用于声明Session级别的存储的属性
+
+		@InitBinder
+			自定义数据绑定注册支持
+
+	@Spring3.0
+		@CookieValue
+			cookie中的数据绑定到方法参数上
+
+		@RequestHandler
+			请求头中的数据绑定到方法参数上
+
+		@RequestBody
+			请求体中的数据绑定到方法参数上
+
+		@ResponseBody
+			方法的返回值作为响应体
+
+		@ExceptionHandler
+			异常处理
+
+	校验
+		JSR-303
+			@Valid 等
+
+	格式
+		@NumberFormat
+
+		@DateTimeFormat
+
+	REST风格
+		@PathVariable
+
+	
+
+URL
+	ant风格
+		*	匹配任意多个字符
+		**	匹配多层
+		?	匹配任意一个字符
+
+	REST风格
+		{xxx}
+
+	正则表达式
+		{xxx:正则表达式}
+
+
+
+
+	/user/add
+	/user/remove?id=1
+	/user/modify
+	/user/find?id=1
+
+
+	/user		post			add
+	/user/1		delete			remove
+	/user/1		put			modify
+	/user/1		get			find
+
+
+
+/user/remove?id=654
+
+/user/234
+
+
+参数
+	HttpServletRequest/HttpServletResponse
+
+	InputStream/OutputStream
+
+	Reader/Writer
+
+	WebRequest/NativeWebRequest
+
+	HttpSession
+
+

@@ -1,0 +1,11 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+	</head>
+	<body>
+		<a href="${pageContext.request.contextPath }/file/editPlus-v3.11.421H.rar">下载地址1</a>
+		
+		<a href="${pageContext.request.contextPath }/download">下载地址2</a>
+	</body>
+</html>

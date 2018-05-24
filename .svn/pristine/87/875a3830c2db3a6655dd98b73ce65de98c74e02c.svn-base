@@ -1,0 +1,76 @@
+校验
+	数据格式检查分为客户端和服务器端两种
+	客户端：使用js，特点响应速度快，对用户友好，减少服务器压力，缺点安全性差
+	服务器端：使用服务器端编程语言，特点安全性高
+
+	SpringMVC服务器端校验
+
+	JSR-303
+		校验标准注解
+
+		Hibernate Validator
+
+	覆盖错误消息
+		直接在注解中提供message
+			或
+		在国际化中配置
+			校验类型.Command名.属性名=错误消息
+
+异常处理
+	异常处理方法注解
+		@ExceptionHandler
+
+	处理全局异常类注解
+		@ControllerAdvice
+
+拦截器
+	Interceptor
+	用于在执行Handler业务处理之前和之后，以及返回响应以前调用拦截器的方法
+	可以将和业务相关的通用处理封装成拦截器
+	从而实现AOP
+
+	自定义
+		拦截器接口
+			HandlerInterceptor
+				HttpServletRequest HttpServletResponse
+			
+			WebRequestInterceptor
+				WebRequest	
+
+		拦截器方法
+			preHandle
+				Handler处理之前拦截
+				返回类型boolean
+				如果返回true，执行下一个组件
+				如果返回false，流程中断，需要自定义response生成响应
+
+			postHandle
+				Handler处理之后拦截
+
+			afterCompletion
+				整个请求处理完毕
+
+
+Ajax处理
+	直接返回字符串
+		方法返回类型String
+		注解
+			@ResponseBody
+			将返回的字符串作为响应体
+		乱码解决
+		@RequestMapping(value="请求路径",produces="text/plain;charset=字符编码")
+
+	返回json字符串
+		使用Jackson2
+
+		方法返回对象
+
+		注解
+			@ResponseBody
+			将返回的对象转换成json字符串作为响应体
+			
+			转换器类
+			org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+
+
+文件上传

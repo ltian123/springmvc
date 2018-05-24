@@ -1,0 +1,98 @@
+国际化
+	Internationalization
+	i18n
+
+	功能
+		程序支持多种语言
+
+		同一个程序，不同国家人看到的文字是自己国家的语言
+
+
+	日期
+	数字
+	文字
+
+
+	使用properties文件
+		xxx_语言编码_区域编码.properties
+
+	ResourceBundle
+
+
+	SpringMVC中使用国际化
+		配置Bean
+			org.springframework.context.support.ReloadableResourceBundleMessageSource
+		
+		注入
+			basename
+
+	JSP:JSTL标签：<fmt:message key=""/>
+		或
+	    Spring标签：<spring:message code=""/>
+
+	Handler:RequestContext requestContext=new RequestContext(request);
+		String getMessage(String key)
+		
+
+数据绑定
+	ServletRequest中的参数->DataBinder->类型转换->校验->方法
+
+	Command可以作为接收请求的参数，以及返回的数据
+
+	类型转换
+		@InitBinder
+			通常方法参数WebDataBinder
+
+		转换规则
+			使用PropertyEditorSupport
+
+		什么时候转换
+			dataBinder.registerCustomEditor(类型, 转换器)
+		
+		转换出错处理
+			handler方法中加入BinderResult/Errors
+
+			页面使用<form:errors path=""></form:errors>标签获得错误消息
+
+			SpringMVC有默认的错误消息
+			覆盖错误消息
+				在国际化文件中配置
+					typeMismatch.Command名.属性名=错误消息
+
+		
+		Converter
+			编写转换器实现类
+				实现Converter接口
+
+			配置ConversionService
+				org.springframework.format.support.FormattingConversionServiceFactoryBean
+				注入converters
+			
+			注册ConversionService
+				<mvc:annotation-driven conversion-service=""></mvc:annotation-driven>
+	
+	校验
+		数据格式检查分为客户端和服务器端两种
+		客户端：使用js，特点响应速度快，对用户友好，减少服务器压力，缺点安全性差
+		服务器端：使用服务器端编程语言，特点安全性高
+
+		SpringMVC服务器端校验
+
+		JSR-303
+			校验标准注解
+
+			Hibernate Validator
+
+		覆盖错误消息
+			直接在注解中提供message
+
+
+	姓名不能为空
+
+	密码2-6位之间
+
+	邮箱符合邮箱格式，可以为空
+
+	年龄1-120之间
+
+	电话符合025-12346578格式

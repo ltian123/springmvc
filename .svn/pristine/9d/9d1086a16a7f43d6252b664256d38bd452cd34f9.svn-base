@@ -1,0 +1,56 @@
+-----------------------------270691471221359
+Content-Disposition: form-data; name="name"
+
+abc
+-----------------------------270691471221359
+Content-Disposition: form-data; name="file"; filename="emp.sql"
+Content-Type: application/octet-stream
+
+create database web;
+use web;
+create table t_emp(
+	id int primary key auto_increment,
+	name varchar(20),
+	salary double,
+	gender varchar(2),
+	edu varchar(10),
+	hobbies varchar(20)
+)engine=Innodb default charset=utf8;
+
+-----------------------------270691471221359--
+
+
+
+文件上传
+	使用commons-fileupload
+
+	配置一个Bean告诉SpringMVC使用commons做文件上传
+		org.springframework.web.multipart.commons.CommonsMultipartResolver
+
+	Handler方法参数CommonsMultipartFile
+
+文件下载
+	1.将文件配置成静态资源
+
+	2.使用Response的输出流传输文件
+
+	3.使用ResponseEntity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

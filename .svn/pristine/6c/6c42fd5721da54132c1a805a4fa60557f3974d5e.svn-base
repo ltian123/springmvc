@@ -1,0 +1,34 @@
+package controller;
+
+import java.util.Arrays;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import command.FormCommand;
+
+@Controller
+@RequestMapping("/form")
+public class FormController {
+
+	@RequestMapping("/show")
+	public String show(FormCommand formCommand){
+		formCommand.setT("abc");
+		formCommand.setP("123");
+		formCommand.setH("aaa");
+		formCommand.setTa("aaa\nbbb\nccc");
+		formCommand.setC(Arrays.asList(new String[]{"1","3"}));
+		return "form";
+	}
+	
+	@RequestMapping("/submit")
+	public String submit(FormCommand formCommand){
+		System.out.println(formCommand.getT());
+		System.out.println(formCommand.getP());
+		System.out.println(formCommand.getH());
+		System.out.println(formCommand.getTa());
+		System.out.println(formCommand.getC());
+		return "redirect:/form/show";
+	}
+	
+}
